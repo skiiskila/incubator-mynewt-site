@@ -41,7 +41,9 @@ GND - the GND wire (black) of the cable goes into a ground pin on the nRF52.
 
 ### Connect the nrF52 board to the computer via USB-microUSB cable
 
-### Create 2 targets - Bootloader and Sensor application
+## Steps to build
+
+### 1.  Create 2 targets - Bootloader and Sensor application
 
 $ newt target create nrf52_boot
 $ newt target set nrf52_boot bsp=@apache-mynewt-core/hw/bsp/nrf52dk
@@ -53,7 +55,7 @@ $ newt target set nrf52_sensor bsp=@apache-mynewt-core/hw/bsp/nrf52dk
 $ newt target set nrf52_sensor build_profile=debug
 $ newt target set nrf52_sensor app=@apache-mynewt-core/apps/sensors_test
 
-```no-highlight
+```
 ~/dev/testing$ newt target show
 targets/nrf52_boot
     app=@apache-mynewt-core/apps/boot
@@ -65,7 +67,109 @@ targets/nrf52_sensor
     build_profile=debug
 ``` 
   
-To enable I2C communications, the sensor target needs to be customized.  You can use the newt tool to override the defaults with custom values, or you could directly make the changes in the syscfg.yml file (both options shown below).
+### 2.  To enable I2C communications, the sensor target needs to be customized.  You can use the newt tool to override the defaults with custom values, or you could directly make the changes in the syscfg.yml file (both options shown below).
+
+#### Option 1:
+$ newt target set nrf52_sensor syscfg=BNO055_I2CBUS=0:I2C_0=1
+
+BNO055_I2CBUS=0 assigns the number 0 to the I2C interface # (the # in I2C_#)
+I2C_0=1 enables the above defined I2C_0
+
+#### Option 2:
+Edit the file “targets/nrf52_sensor/syscfg.yml” with the following settings.
+
+syscfg.vals:
+    BNO055_I2CBUS: 0
+    I2C_0: 1
+    TCS34725_I2CBUS: 0
+
+ To make sure your target looks good, do a "newt target show" as shown below
+
+```
+$ newt target show
+targets/nrf52_boot
+    app=@apache-mynewt-core/apps/boot
+    bsp=@apache-mynewt-core/hw/bsp/nrf52dk
+    build_profile=optimized
+targets/nrf52_sensor
+    app=@apache-mynewt-core/apps/sensors_test
+    bsp=@apache-mynewt-core/hw/bsp/nrf52dk
+    build_profile=debug
+    syscfg=BNO055_I2CBUS=0:I2C_0=1
+```
+
+### 3. Build the two executibles
+```
+$ newt build nrf52_boot
+Building target targets/nrf52_boot
+Compiling repos/apache-mynewt-core/boot/bootutil/src/image_ec256.c
+Compiling repos/apache-mynewt-core/boot/bootutil/src/image_ec.c
+Compiling repos/apache-mynewt-core/boot/bootutil/src/image_rsa.c
+<snip>
+Linking ~/bin/targets/nrf52_boot/app/apps/boot/boot.elf
+Target successfully built: targets/nrf52_boot
+```
+
+```
+$ newt build nrf52_sensor
+Building target targets/nrf52_sensor
+Compiling repos/apache-mynewt-core/boot/bootutil/src/image_rsa.c
+Compiling repos/apache-mynewt-core/boot/bootutil/src/image_ec.c
+<snip>
+Linking ~bin/targets/nrf52_sensor/app/apps/sensors_test/sensors_test.elf
+Target successfully built: targets/nrf52_sensor
+```
+
+### 4. Sign the application image
+```
+$ newt create-image nrf52_sensor 1.0
+Compiling bin/targets/nrf52_sensor/generated/src/nrf52_sensor-sysinit-app.c
+Archiving nrf52_sensor-sysinit-app.a
+Linking ~/bin/targets/nrf52_sensor/app/apps/sensors_test/sensors_test.elf
+App image succesfully generated: ~/bin/targets/nrf52_sensor/app/apps/sensors_test/sensors_test.img
+```
+
+### 5. Prepare flash for images by erasing what's in the flash first.  
+```
+$ JLinkExe -device nRF52 -speed 4000 -if SWD
+SEGGER J-Link Commander V6.14c (Compiled Mar 31 2017 17:42:24)
+DLL version V6.14c, compiled Mar 31 2017 17:42:10
+<snip>
+
+J-Link>
+
+J-Link>erase
+
+<snip>
+
+Erasing done.
+J-Link>
+
+```
+### 6. Load the two images, nRF52_boot and nRF52_sensor
+```
+$ newt load nrf52_boot
+Loading bootloader
+
+$ newt load nrf52_sensor
+Loading app image into slot 1
+```
+
+## The LED should be blinking now.
+
+### 7. Talking to the sensor :  for this, we use Minicom (any other serial terminal emulator would work).
+
+#### (a). Find the right tty - tty 
+
+```
+$ ls /dev/tty*
+/dev/tty				
+<snip>	
+/dev/tty.usbmodem1411			
+/dev/tty.usbserial-FTZ6XVPF		
+/dev/ttyp0				
+<snip>
+
 
 
 
