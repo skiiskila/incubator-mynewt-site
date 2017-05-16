@@ -159,7 +159,7 @@ Loading app image into slot 1
 
 ### 7. Talking to the sensor :  for this, we use Minicom (any other serial terminal emulator would work).
 
-#### (a). Find the right tty - tty 
+#### (a). Find the right tty - tty.usbserial-xxxxxxxx  
 
 ```
 $ ls /dev/tty*
@@ -169,6 +169,32 @@ $ ls /dev/tty*
 /dev/tty.usbserial-FTZ6XVPF		
 /dev/ttyp0				
 <snip>
+```
+
+#### (b) start minicom with the right tty
+```
+$ minicom -D /dev/tty.usbserial-FTZ6XVPF -b 115200
+
+Welcome to minicom 2.7
+
+OPTIONS: 
+Compiled on Nov 24 2015, 16:14:21.
+Port /dev/tty.usbserial-FTZ6XVPF, 16:41:00
+Press Meta-Z for help on special keys
+```
+
+#### (c) communicate with the sensor.
+
+For list of commands, type "?" in the terminal
+```
+——Minicom window———
+
+?
+82260:Commands:
+82260:     stat    config       log      echo         ?    prompt 
+82262:    ticks     tasks  mempools      date    sensor     flash 
+82264: tcs34725    bno055 
+```
 
 
 
