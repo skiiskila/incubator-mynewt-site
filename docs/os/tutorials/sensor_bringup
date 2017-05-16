@@ -20,3 +20,5 @@ https://learn.adafruit.com/adafruit-bno055-absolute-orientation-sensor/overview
 (b)nRF52 dev board to connect the sensor via the I2C interface.
 
 ### Minicom is used as a serial terminal emulator in this tutorial.  Please make sure you have minicom and another serial emulator installed.
+
+## Hardware set up
