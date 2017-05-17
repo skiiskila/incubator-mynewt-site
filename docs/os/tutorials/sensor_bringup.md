@@ -26,18 +26,18 @@ https://learn.adafruit.com/adafruit-bno055-absolute-orientation-sensor/overview
 Sensor is connected to nRF52 dev board via I2C interface
 
 ### Pins used for I2C connection
-Power (V_in) - connect this pin on the sensor board to the 5V pin on the nRF52
-Clock Line (SCL) - connect this pin on the sensor board to pin 27 on the nRF52
-Data (SDA) - connect this pin on the sensor board to pin 26 on the nRF52
-Ground (GND) - connect this pin on the sensor board to GND pin on the nRF52
+* Power (V_in) - connect this pin on the sensor board to the 5V pin on the nRF52
+* Clock Line (SCL) - connect this pin on the sensor board to pin 27 on the nRF52
+* Data (SDA) - connect this pin on the sensor board to pin 26 on the nRF52
+* Ground (GND) - connect this pin on the sensor board to GND pin on the nRF52
 
 ### Serial setup
 To make the serial connection, you need a FTDI cable (http://www.ftdichip.com/Support/Documents/DataSheets/Cables/DS_USB_RS232_CABLES.pdf).  The USB end goes to the computer and the pins go to the nRF52 dev board
 
 ### Pins used for serial connection:
-RX - the RX wire (yellow) of the cable goes into Pin 6 (which is the TX on the nRF52)
-TX - the TX wire (orange) of the cable goes into Pin 8 (which is the RX on the nRF52)
-GND - the GND wire (black) of the cable goes into a ground pin on the nRF52.
+* RX - the RX wire (yellow) of the cable goes into Pin 6 (which is the TX on the nRF52)
+* TX - the TX wire (orange) of the cable goes into Pin 8 (which is the RX on the nRF52)
+* GND - the GND wire (black) of the cable goes into a ground pin on the nRF52.
 
 ### Connect the nrF52 board to the computer via USB-microUSB cable
 
