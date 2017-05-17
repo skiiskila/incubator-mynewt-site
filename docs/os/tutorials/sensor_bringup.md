@@ -86,8 +86,8 @@ Edit the file “targets/nrf52_sensor/syscfg.yml” with the following settings.
 
 ```
 syscfg.vals:  
-   BNO055_I2CBUS: 0  
-   I2C_0: 1  
+    BNO055_I2CBUS: 0  
+    I2C_0: 1  
 ```
 
  To make sure your target looks good, do a "newt target show" as shown below
