@@ -31,6 +31,10 @@ Sensor is connected to nRF52 dev board via I2C interface
 * Data (SDA) - connect this pin on the sensor board to pin 26 on the nRF52
 * Ground (GND) - connect this pin on the sensor board to GND pin on the nRF52
 
+![alt text](https://github.com/skiiskila/incubator-mynewt-site/blob/skdocs/docs/os/tutorials/pics/I2Cpinsa_small.jpg)
+![alt text](https://github.com/skiiskila/incubator-mynewt-site/blob/skdocs/docs/os/tutorials/pics/I2Cpinsb_small.jpg)
+![alt text](https://github.com/skiiskila/incubator-mynewt-site/blob/skdocs/docs/os/tutorials/pics/BNO055pins_small.jpg)
+
 ### Serial setup
 To make the serial connection, you need a FTDI cable (http://www.ftdichip.com/Support/Documents/DataSheets/Cables/DS_USB_RS232_CABLES.pdf).  The USB end goes to the computer and the pins go to the nRF52 dev board
 
@@ -38,6 +42,8 @@ To make the serial connection, you need a FTDI cable (http://www.ftdichip.com/Su
 * RX - the RX wire (yellow) of the cable goes into Pin 6 (which is the TX on the nRF52)
 * TX - the TX wire (orange) of the cable goes into Pin 8 (which is the RX on the nRF52)
 * GND - the GND wire (black) of the cable goes into a ground pin on the nRF52.
+
+![alt text](https://github.com/skiiskila/incubator-mynewt-site/blob/skdocs/docs/os/tutorials/pics/serialconnector_small.jpg)
 
 ### Connect the nrF52 board to the computer via USB-microUSB cable
 
