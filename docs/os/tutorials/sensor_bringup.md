@@ -1,6 +1,6 @@
 # Bring up a Mynewt supported sensor
 
-## Pre-requisites
+## Prerequisites
 
 Ensure that you meet the following prerequisites before continuing with one of the tutorials.
 
@@ -59,7 +59,7 @@ $ newt target set nrf52_sensor app=@apache-mynewt-core/apps/sensors_test
 ```
 
 ```
-~/dev/testing$ newt target show
+$ newt target show
 targets/nrf52_boot
     app=@apache-mynewt-core/apps/boot
     bsp=@apache-mynewt-core/hw/bsp/nrf52dk
@@ -85,9 +85,11 @@ I2C_0=1 enables the above defined I2C_0
 Edit the file “targets/nrf52_sensor/syscfg.yml” with the following settings.
 
 syscfg.vals:
-    BNO055_I2CBUS: 0
-    I2C_0: 1
-    TCS34725_I2CBUS: 0
+# Assign 0 to I2C interface #
+   BNO055_I2CBUS: 0
+   
+# Enables the above defined I2C_0   
+   I2C_0: 1
 
  To make sure your target looks good, do a "newt target show" as shown below
 
@@ -123,7 +125,7 @@ Building target targets/nrf52_sensor
 Compiling repos/apache-mynewt-core/boot/bootutil/src/image_rsa.c
 Compiling repos/apache-mynewt-core/boot/bootutil/src/image_ec.c
 <snip>
-Linking ~bin/targets/nrf52_sensor/app/apps/sensors_test/sensors_test.elf
+Linking ~/bin/targets/nrf52_sensor/app/apps/sensors_test/sensors_test.elf
 Target successfully built: targets/nrf52_sensor
 ```
 
