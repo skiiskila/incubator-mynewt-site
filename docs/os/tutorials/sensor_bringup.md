@@ -190,10 +190,52 @@ For list of commands, type "?" in the terminal
 ——Minicom window———
 
 ?
-82260:Commands:
-82260:     stat    config       log      echo         ?    prompt 
-82262:    ticks     tasks  mempools      date    sensor     flash 
-82264: tcs34725    bno055 
+3352:Commands:
+3352:     stat    config       log      echo         ?    prompt 
+3354:    ticks     tasks  mempools      date    sensor     flash 
+3356: tcs34725    bno055 
+
+
+```
+```
+sensor list
+11561:sensor dev = accel1, type = 0x1 0x2 0x4 0x10 0x200 0x1000 0x2000 0x4000 
+```
+```
+sensor type accel1
+15963:sensor dev = accel1, 
+type =
+15963:    accelerometer: 0x1
+15964:    magnetic field: 0x2
+15965:    gyroscope: 0x4
+15966:    temperature: 0x10
+15966:    vector: 0x200                                                         
+15967:    accel: 0x1000                                                         
+15968:    gravity: 0x2000                                                       
+15968:    euler: 0x4000     
+```
+```
+sensor read accel1 0x1 -n 5                                                     
+21458:ts: [ secs: 167 usecs: 646308 cputime: 168142055 ]                        
+21460:x = -0.510000000 y = -7.559999936 z = 6.050000192                         
+21461:ts: [ secs: 167 usecs: 666524 cputime: 168162271 ]                        
+21462:x = -0.510000000 y = -7.519999968 z = 6.010000229                         
+21463:ts: [ secs: 167 usecs: 682355 cputime: 168178102 ]                        
+21464:x = -0.560000000 y = -7.550000192 z = 6.030000210                         
+21465:ts: [ secs: 167 usecs: 697980 cputime: 168193727 ]                        
+21466:x = -0.540000000 y = -7.530000224 z = 6.000000000                         
+21467:ts: [ secs: 167 usecs: 713527 cputime: 168209274 ]                        
+21468:x = -0.460000000 y = -7.539999936 z = 5.989999744                         
+ ``` 
+  
+ ``` 
+                                                                        
+sensor read accel1 0x4 -n 5                                                     
+24672:ts: [ secs: 192 usecs: 751160 cputime: 193246907 ]                        
+24673:ts: [ secs: 192 usecs: 760754 cputime: 193256501 ]                        
+24674:ts: [ secs: 192 usecs: 768566 cputime: 193264313 ]                        
+24675:ts: [ secs: 192 usecs: 776379 cputime: 193272126 ]                        
+24676:ts: [ secs: 192 usecs: 784192 cputime: 193279939 ]                        
 ```
 
 
