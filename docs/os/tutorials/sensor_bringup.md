@@ -84,12 +84,9 @@ I2C_0=1 enables the above defined I2C_0
 #### Option 2:
 Edit the file “targets/nrf52_sensor/syscfg.yml” with the following settings.
 
-syscfg.vals:
-# Assign 0 to I2C interface #
-   BNO055_I2CBUS: 0
-   
-# Enables the above defined I2C_0   
-   I2C_0: 1
+syscfg.vals:  
+   BNO055_I2CBUS: 0  
+   I2C_0: 1  
 
  To make sure your target looks good, do a "newt target show" as shown below
 
