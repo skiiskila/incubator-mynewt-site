@@ -45,15 +45,15 @@ To make the serial connection, you need a FTDI cable (http://www.ftdichip.com/Su
 
 ### 1.  Create 2 targets - Bootloader and Sensor application
 
-$ newt target create nrf52_boot
-$ newt target set nrf52_boot bsp=@apache-mynewt-core/hw/bsp/nrf52dk
-$ newt target set nrf52_boot build_profile=optimized
-$ newt target set nrf52_boot app=@apache-mynewt-core/apps/boot
+$ newt target create nrf52_boot  
+$ newt target set nrf52_boot bsp=@apache-mynewt-core/hw/bsp/nrf52dk  
+$ newt target set nrf52_boot build_profile=optimized  
+$ newt target set nrf52_boot app=@apache-mynewt-core/apps/boot  
 
-$ newt target create nrf52_sensor
-$ newt target set nrf52_sensor bsp=@apache-mynewt-core/hw/bsp/nrf52dk
-$ newt target set nrf52_sensor build_profile=debug
-$ newt target set nrf52_sensor app=@apache-mynewt-core/apps/sensors_test
+$ newt target create nrf52_sensor  
+$ newt target set nrf52_sensor bsp=@apache-mynewt-core/hw/bsp/nrf52dk  
+$ newt target set nrf52_sensor build_profile=debug  
+$ newt target set nrf52_sensor app=@apache-mynewt-core/apps/sensors_test  
 
 ```
 ~/dev/testing$ newt target show
