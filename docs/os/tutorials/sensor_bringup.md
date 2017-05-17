@@ -45,6 +45,8 @@ To make the serial connection, you need a FTDI cable (http://www.ftdichip.com/Su
 
 ### 1.  Create 2 targets - Bootloader and Sensor application
 
+
+```
 $ newt target create nrf52_boot  
 $ newt target set nrf52_boot bsp=@apache-mynewt-core/hw/bsp/nrf52dk  
 $ newt target set nrf52_boot build_profile=optimized  
@@ -54,6 +56,7 @@ $ newt target create nrf52_sensor
 $ newt target set nrf52_sensor bsp=@apache-mynewt-core/hw/bsp/nrf52dk  
 $ newt target set nrf52_sensor build_profile=debug  
 $ newt target set nrf52_sensor app=@apache-mynewt-core/apps/sensors_test  
+```
 
 ```
 ~/dev/testing$ newt target show
@@ -70,7 +73,10 @@ targets/nrf52_sensor
 ### 2.  To enable I2C communications, the sensor target needs to be customized.  You can use the newt tool to override the defaults with custom values, or you could directly make the changes in the syscfg.yml file (both options shown below).
 
 #### Option 1:
+
+```
 $ newt target set nrf52_sensor syscfg=BNO055_I2CBUS=0:I2C_0=1
+```
 
 BNO055_I2CBUS=0 assigns the number 0 to the I2C interface # (the # in I2C_#)
 I2C_0=1 enables the above defined I2C_0
@@ -99,6 +105,7 @@ targets/nrf52_sensor
 ```
 
 ### 3. Build the two executibles
+
 ```
 $ newt build nrf52_boot
 Building target targets/nrf52_boot
@@ -121,6 +128,7 @@ Target successfully built: targets/nrf52_sensor
 ```
 
 ### 4. Sign the application image
+
 ```
 $ newt create-image nrf52_sensor 1.0
 Compiling bin/targets/nrf52_sensor/generated/src/nrf52_sensor-sysinit-app.c
@@ -129,7 +137,8 @@ Linking ~/bin/targets/nrf52_sensor/app/apps/sensors_test/sensors_test.elf
 App image succesfully generated: ~/bin/targets/nrf52_sensor/app/apps/sensors_test/sensors_test.img
 ```
 
-### 5. Prepare flash for images by erasing what's in the flash first.  
+### 5. Prepare flash for images by erasing what's in the flash first 
+
 ```
 $ JLinkExe -device nRF52 -speed 4000 -if SWD
 SEGGER J-Link Commander V6.14c (Compiled Mar 31 2017 17:42:24)
@@ -147,6 +156,7 @@ J-Link>
 
 ```
 ### 6. Load the two images, nRF52_boot and nRF52_sensor
+
 ```
 $ newt load nrf52_boot
 Loading bootloader
@@ -172,6 +182,7 @@ $ ls /dev/tty*
 ```
 
 #### (b) start minicom with the right tty
+
 ```
 $ minicom -D /dev/tty.usbserial-FTZ6XVPF -b 115200
 
@@ -186,6 +197,7 @@ Press Meta-Z for help on special keys
 #### (c) communicate with the sensor.
 
 For list of commands, type "?" in the terminal
+
 ```
 ——Minicom window———
 
